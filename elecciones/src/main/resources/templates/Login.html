@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/signin.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+
+<title>Login</title>
+
+</head>
+<body class="text-center body">
+	<main class="form-signin">
+
+		<br />
+		<form th:action="@{/usuario/validarUsuario}" th:object="${objUsuario}"
+			method="POST">
+
+			<h1 class="h3 mb-3 fw-normal"><b>Sistema de Elecciones</b></h1>
+			<div class="form-floating">
+				<input type="email" class="form-control" placeholder="correo"
+					id="correo" name="correo" th:field="*{correo}"> <label
+					for="floatingInput">Usuario</label>
+			</div>
+			<div class="form-floating">
+				<input type="password" class="form-control" placeholder="Password"
+					id="password" name="password" th:field="*{password}"> <label
+					for="floatingPassword">Contraseña</label>
+			</div>
+
+			<div th:if="${mensaje!=null}" th:text="${mensaje}"
+				class="fw-lighter text-danger"></div>
+			<br />
+			<button class="w-100 btn btn-lg btn-primary" type="submit"
+				value="Ingresar"><b>Ingresar</b></button>
+			<br> <br>
+
+		</form>
+	
+	</main>
+
+</body>
+</html>

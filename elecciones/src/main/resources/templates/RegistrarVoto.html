@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/signin.css"
+	th:href="@{/css/signin.css}">
+<link rel="stylesheet" href="css/bootstrap.css"
+	th:href="@{/css/bootstrap.css}">
+<title>Registre Voto</title>
+</head>
+<body class="text-center">
+	<main class="form-signin">
+
+		<form th:object="${objAlumno}">
+			<h1 class="h3 mb-3 fw-normal"><b>Datos del Alumno</b></h1>
+			<div class="form-floating">
+				<input type="text" class="form-control" placeholder="codigo"
+					id="codigo" name="codigo" th:field="*{codigo}" ReadOnly> <label
+					for="floatingInput">Codigo</label>
+			</div>
+			<div class="form-floating">
+				<input type="text" class="form-control" placeholder="nombres"
+					id="nombres" name="nombres" th:field="*{nombres}" ReadOnly> <label
+					for="floatingInput">Nombres</label>
+			</div>
+			<div class="form-floating">
+				<input type="text" class="form-control"
+					placeholder="apellidoPaterno" id="apellidoPaterno"
+					name="apellidoPaterno" th:field="*{apellidoPaterno}" ReadOnly> <label
+					for="floatingInput">Apellido Paterno</label>
+			</div>
+			<div class="form-floating">
+				<input type="text" class="form-control"
+					placeholder="apellidoMaterno" id="apellidoMaterno"
+					name="apellidoMaterno" th:field="*{apellidoMaterno}" ReadOnly> <label
+					for="floatingInput" >Apellido Materno</label>
+			</div>
+			<br />
+	</form>
+	<form th:action="@{/voto/registrarVoto}" method="POST" >
+			<h1 class="h3 mb-3 fw-normal"><b>Datos del Voto</b></h1>
+			<div class="form-floating">
+			<select class="form-select" name="idPartido" id="idPartido">
+<!-- 				<option selected>Selecciona el partido</option> -->
+				<option th:each="partido : ${listaPartidos}"
+					th:value="${partido.codigo}" th:text="${partido.nombrePartido}" ></option>
+					
+			</select>
+			<label for="floatingInput">Seleccione el Partido</label>
+			</div>
+			 <br />
+			<button class="w-100 btn btn-lg btn-primary" type="submit"
+				value="Ingresar"><b>Registrar Voto</b></button>
+			<br /> <br />
+
+			<div th:if="${mensaje!=null}" th:text="${mensaje}"></div>
+			<p>
+				<a class="w-100 btn btn-lg btn-outline-info mt-3" th:href="@{/}"><b>Regresar</b></a>
+			</p>
+		</form>
+
+	</main>
+</body>
+</html>
